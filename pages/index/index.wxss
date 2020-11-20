@@ -64,6 +64,7 @@
 /* 推荐内容区 */
 .recommendScroll {
   display: flex;
+  height: 300rpx;
 }
 .scrollItem {
   width: 200rpx;
@@ -90,4 +91,49 @@
   display: -webkit-box;
   -webkit-box-orient: vertical; /*设置对齐模式*/
   -webkit-line-clamp: 2;
+}
+
+/* 排行榜 */
+.topList {
+  padding: 20rpx;
+}
+.topListSwiper {
+  height: 450rpx;
+}
+.swiperItem {
+  width: 96%;
+  background: #fbfbfb;
+}
+
+.swiperItem .title {
+  font-size: 30rpx;
+  line-height: 80rpx;
+}
+.musicItem {
+  /* 当一个元素设置为flex，其子元素会自动称为block元素 */
+  /* display: flex; */
+  margin-bottom: 20rpx;
+}
+.musicItem image {
+  width: 100rpx;
+  height: 100rpx;
+  vertical-align: middle;
+  border-radius: 6rpx;
+}
+/* .musicItem count {
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+} */
+.musicItem .count {
+  margin: 0 20rpx;
+}
+.musicItem .musicName {
+  height: 100rpx;
+  line-height: 100rpx;
+  max-width: 400rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
