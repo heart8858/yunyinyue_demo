@@ -44,6 +44,8 @@
 /* 视频列表样式 */
 .videoScroll {
   margin-top: 10rpx;
+  /* calc运算符左右必须加空格，否则计算失效 */
+  height: calc(100vh - 152rpx)
 }
 .videoItem {
   padding: 0 3%;

@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText":"云音乐视频"
+  "navigationBarTitleText":"云音乐视频",
+  "enablePullDownRefresh": true
 }
