@@ -21,6 +21,7 @@
     <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id"
       bindtap="toSongDetail"
       data-song="{{item}}"
+      data-index="{{index}}"
     >
       <image src="{{item.album.picUrl}}"></image>
       <view class="musicInfo">

@@ -1,0 +1,7 @@
+{
+  "name": "demo_yunyinyue",
+  "version": "1.0.0",
+  "dependencies": {
+    "pubsub-js": "^1.9.1"
+  }
+}
