@@ -1,4 +1,5 @@
 import Pubsub from "pubsub-js"
+import moment from "moment"
 import request from "../../utils/request.js"
 // 获取全局的实例
 const appInstance = getApp();
@@ -13,6 +14,9 @@ Page({
     song:{}, //歌曲详情对象
     musicId:'', //音乐id
     musicLink: '', //音乐的链接
+    currentTime: '00:00', // 实时时间
+    durationTime: '00:00', // 总时长
+    currentWidth: 0, // 实时进度条的宽度
   },
 
   /**
@@ -57,6 +61,30 @@ Page({
       this.changePlayState(false);
     }); 
 
+    // 监听音乐播放自结束
+    this.backgroundAudioManager.onEnded(() => {
+      // 自动切换至下一首音乐，并且自动播放
+      Pubsub.publish('switchType' , 'next')
+      // 将实时进度条的长度还原为0,时间也还原为0
+      this.setData({
+        currentWidth: 0,
+        currentTime: '00:00'
+      })
+    }); 
+
+    // 监听音乐实时播放的进度
+    this.backgroundAudioManager.onTimeUpdate(() => {
+      // console.log('总时长:', this.backgroundAudioManager.duration);
+      // console.log('实时:', this.backgroundAudioManager.currentTime);
+      // 格式化实时的播放时间
+      let currentTime = moment(this.backgroundAudioManager.currentTime * 1000).format('mm:ss');
+      let currentWidth = this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 450;
+      this.setData({
+        currentTime,
+        currentWidth
+      })
+    })
+
   },
   // 修改播放状态的功能函数
   changePlayState(isPlay) {
@@ -69,8 +97,11 @@ Page({
   // 获取音乐详情的功能函数
   async getMusicInfo(musicId) {
     let songData = await request("/song/detail", {ids: musicId});
+    // songData.songs[0].dt 单位ms
+    let durationTime = moment(songData.songs[0].dt).format('mm:ss');
     this.setData({
-      song: songData.songs[0]
+      song: songData.songs[0],
+      durationTime
     })
 
   // 动态修改窗口标题
