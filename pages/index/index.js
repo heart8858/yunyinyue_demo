@@ -53,6 +53,13 @@ Page({
     })
   },
   
+  // 跳转至other
+  toOther() {
+    wx.navigateTo({
+      url: '/pages/other/other',
+    })
+  },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

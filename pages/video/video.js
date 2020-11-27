@@ -146,6 +146,12 @@ Page({
     // console.log('网易云音乐暂时无提供分页api')
     // 模拟数据
   },
+  // 跳转至搜索页面
+  toSearch() {
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
